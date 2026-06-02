@@ -1,0 +1,127 @@
+
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Albumi – kuuntele puhelimella</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background: #111;
+      color: #f5f5f5;
+    }
+    .wrap {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    .cover {
+      width: 100%;
+      max-width: 420px;
+      display: block;
+      margin: 0 auto 20px auto;
+      border-radius: 12px;
+      box-shadow: 0 6px 24px rgba(0,0,0,0.4);
+    }
+    h1, p {
+      text-align: center;
+    }
+    .playerbox {
+      background: #1a1a1a;
+      padding: 16px;
+      border-radius: 12px;
+      margin: 20px 0;
+    }
+    audio {
+      width: 100%;
+      margin-top: 10px;
+    }
+    .tracks {
+      list-style: none;
+      padding: 0;
+      margin: 20px 0 0 0;
+    }
+    .tracks li {
+      margin: 8px 0;
+    }
+    .tracks button {
+      width: 100%;
+      padding: 14px;
+      border: 0;
+      border-radius: 10px;
+      background: #2a2a2a;
+      color: #fff;
+      text-align: left;
+      cursor: pointer;
+      font-size: 16px;
+    }
+    .tracks button:hover {
+      background: #3a3a3a;
+    }
+    .download {
+      text-align: center;
+      margin-top: 20px;
+    }
+    .download a {
+      display: inline-block;
+      padding: 12px 16px;
+      background: #4caf50;
+      color: white;
+      text-decoration: none;
+      border-radius: 10px;
+    }
+    .note {
+      font-size: 14px;
+      opacity: 0.8;
+      margin-top: 15px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <img src="cover.jpg" alt="Albumin kansi" class="cover" />
+
+    <h1>Albumin nimi</h1>
+    <p>Kuuntele levy puhelimella</p>
+
+    <div class="playerbox">
+      <p><strong>Nyt soi:</strong> <span id="nowPlaying">Valitse kappale listasta</span></p>
+
+      <audio id="audioPlayer" controls preload="none">
+        <source id="audioSource" src="" type="audio/mpeg" />
+        Selaimesi ei tue audiosoittinta.
+      </audio>
+    </div>
+
+    <ul class="tracks">
+      <li><button onclick="playTrack('audio/01-eka-biisi.mp3', '1. Eka biisi')">1. Eka biisi</button></li>
+      <li><button onclick="playTrack('audio/02-toka-biisi.mp3', '2. Toka biisi')">2. Toka biisi</button></li>
+      <li><button onclick="playTrack('audio/03-kolmas-biisi.mp3', '3. Kolmas biisi')">3. Kolmas biisi</button></li>
+    </ul>
+
+    <div class="download">
+      <a href="audio/01-eka-biisi.mp3" download>Lataa esimerkkikappale</a>
+    </div>
+
+    <div class="note">
+      Jos haluat, voit vaihtaa latausnapin osoittamaan ZIP-pakettiin, jossa on koko albumi.
+    </div>
+  </div>
+
+  <script>
+    function playTrack(file, title) {
+      const player = document.getElementById('audioPlayer');
+      const source = document.getElementById('audioSource');
+      const nowPlaying = document.getElementById('nowPlaying');
+
+      source.src = file;
+      player.load();
+      player.play();
+      nowPlaying.textContent = title;
+    }
+  </script>
+</body>
+</html>
